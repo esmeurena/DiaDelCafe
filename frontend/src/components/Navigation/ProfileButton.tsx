@@ -1,4 +1,5 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { FaUserCircle } from 'react-icons/fa';
 import { thunkLogout } from "../../redux/session";
@@ -6,71 +7,63 @@ import OpenModalMenuItem from "./OpenModalMenuItem";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import { useAppSelector } from "../../redux/store";
+import "./Navigation.css";
 
-function ProfileButton():JSX.Element {
+function ProfileButton(): JSX.Element {
   const dispatch = useDispatch();
-  const [showMenu, setShowMenu] = useState(false);
+  const [showPanel, setShowPanel] = useState(false);
   const user = useAppSelector((store) => store.session.user);
-  const ulRef = useRef<any>();
-
-  const toggleMenu = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    e.stopPropagation(); // Keep from bubbling up to document and triggering closeMenu
-    setShowMenu(!showMenu);
-  };
 
   useEffect(() => {
-    if (!showMenu) return;
+    if (!showPanel) return;
 
-    const closeMenu = (e:any) => {
-      if (ulRef.current && !ulRef.current.contains(e.target)) {
-        setShowMenu(false);
+    const handleClickOutside = (e: MouseEvent) => {
+      const panel = document.getElementById("profile-panel");
+      if (panel && !panel.contains(e.target as Node)) {
+        setShowPanel(false);
       }
     };
 
-    document.addEventListener("click", closeMenu);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [showPanel]);
 
-    return () => document.removeEventListener("click", closeMenu);
-  }, [showMenu]);
-
-  const closeMenu = () => setShowMenu(false);
-
-  const logout = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const logout = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     dispatch(thunkLogout());
-    closeMenu();
+    setShowPanel(false);
   };
 
   return (
     <>
-      <button onClick={(e) => toggleMenu(e)}>
+      <button className="profile-icon" onClick={() => setShowPanel(true)}>
         <FaUserCircle />
       </button>
-      {showMenu && (
-        <ul className={"profile-dropdown"} ref={ulRef}>
-          {user ? (
-            <>
-              <li>{user.username}</li>
-              <li>{user.email}</li>
-              <li>
-                <button onClick={(e) => logout(e)}>Log Out</button>
-              </li>
-            </>
-          ) : (
-            <>
-              <OpenModalMenuItem
-                itemText="Log In"
-                onItemClick={closeMenu}
-                modalComponent={<LoginFormModal />}
-              />
-              <OpenModalMenuItem
-                itemText="Sign Up"
-                onItemClick={closeMenu}
-                modalComponent={<SignupFormModal />}
-              />
-            </>
-          )}
-        </ul>
-      )}
+
+      <div id="profile-panel" className={`profile-panel ${showPanel ? "open" : ""}`}>
+        <button className="close-panel" onClick={() => setShowPanel(false)}>×</button>
+        {user ? (
+          <>
+            {/* <p><strong>{user.username}</strong></p> */}
+            <h3>Hello, {user.first_name}!</h3>
+            <NavLink to="/dashboard">User Dashboard</NavLink>
+            <button onClick={logout}>Log Out</button>
+          </>
+        ) : (
+          <>
+            <OpenModalMenuItem
+              itemText="Log In"
+              onItemClick={() => setShowPanel(false)}
+              modalComponent={<LoginFormModal />}
+            />
+            <OpenModalMenuItem
+              itemText="Sign Up"
+              onItemClick={() => setShowPanel(false)}
+              modalComponent={<SignupFormModal />}
+            />
+          </>
+        )}
+      </div>
     </>
   );
 }

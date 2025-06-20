@@ -4,14 +4,25 @@ export interface SessionInitialState {
 }
 
 export interface IUser {
-    id: number;
+    id?: number;
+    first_name: string;
+    last_name: string;
     email: string;
+    phone_number: number;
+    birth_day: number;
+    birth_month: number;
+    birth_year: number;
 }
 
 export interface ISignUpUser{
+    first_name: string;
+    last_name: string;
     email: string;
-    username: string;
     password: string;
+    phone_number: number;
+    birth_day: number;
+    birth_month: number;
+    birth_year: number;
 }
 
 
