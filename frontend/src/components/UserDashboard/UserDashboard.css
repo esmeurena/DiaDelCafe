@@ -1,0 +1,33 @@
+.user-dashboard-container {
+  padding: 60px 5%;
+  background-color: #fffaf5;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.user-dashboard-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+}
+
+.user-dashboard-profile-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #a9745a;
+}
+
+.user-dashboard-panel {
+  width: 100%;
+  max-width: 600px;
+  background-color: white;
+  padding: 1rem;
+  border-radius: 10px;
+}

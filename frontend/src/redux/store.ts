@@ -7,9 +7,11 @@ import {
 import thunk from "redux-thunk";
 import sessionReducer from "./session";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
+import menuItemsReducer from "./menu_item";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
+  menu_items: menuItemsReducer,
 });
 
 

@@ -7,26 +7,41 @@ import { useAppSelector } from "../../redux/store";
 
 interface ISignUpErrors {
   server?: any;
+  first_name?: string;
+  last_name?: string;
   email?: string;
-  username?: string;
   password?: string;
   confirmPassword?: string;
+  phone_number?: string;
+  birth_day?: string;
+  birth_month?: string;
+  birth_year?: string;
 }
 
 function SignupFormPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const sessionUser = useAppSelector((state) => state.session.user);
+  const [first_name, setFirstName] = useState("");
+  const [last_name, setLastName] = useState("");
   const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [phone_number, setPhoneNumber] = useState(0);
+  const [birth_day, setBirthDay] = useState(0);
+  const [birth_month, setBirthMonth] = useState(0);
+  const [birth_year, setBirthYear] = useState(0);
   const [errors, setErrors] = useState<ISignUpErrors>({
     server: "",
+    first_name: "",
+    last_name: "",
     email: "",
-    username: "",
     password: "",
-    confirmPassword: ""
+    confirmPassword: "",
+    phone_number: "",
+    birth_day: "",
+    birth_month: "",
+    birth_year: ""
   });
 
   if (sessionUser) return <Navigate to="/" replace={true} />;
@@ -43,9 +58,14 @@ function SignupFormPage() {
 
     const serverResponse = await dispatch(
       thunkSignup({
+        first_name,
+        last_name,
         email,
-        username,
         password,
+        phone_number,
+        birth_day,
+        birth_month,
+        birth_year
       })
     );
 
@@ -64,6 +84,26 @@ function SignupFormPage() {
       {errors.server && <p>{errors.server}</p>}
       <form onSubmit={(e) => handleSubmit}>
         <label>
+          First Name
+          <input
+            type="text"
+            value={first_name}
+            onChange={(e) => setFirstName(e.target.value)}
+            required
+          />
+        </label>
+        {errors.first_name && <p>{errors.first_name}</p>}
+        <label>
+          Last Name
+          <input
+            type="text"
+            value={last_name}
+            onChange={(e) => setLastName(e.target.value)}
+            required
+          />
+        </label>
+        {errors.last_name && <p>{errors.last_name}</p>}
+        <label>
           Email
           <input
             type="text"
@@ -74,15 +114,45 @@ function SignupFormPage() {
         </label>
         {errors.email && <p>{errors.email}</p>}
         <label>
-          Username
+          Phone Number
           <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            type="number"
+            value={phone_number}
+            onChange={(e) => setPhoneNumber(Number(e.target.value))}
             required
           />
         </label>
-        {errors.username && <p>{errors.username}</p>}
+        {errors.phone_number && <p>{errors.phone_number}</p>}
+        <label>
+          Birth day
+          <input
+            type="number"
+            value={birth_day}
+            onChange={(e) => setBirthDay(Number(e.target.value))}
+            required
+          />
+        </label>
+        {errors.birth_day && <p>{errors.birth_day}</p>}
+        <label>
+          Birth month
+          <input
+            type="number"
+            value={birth_month}
+            onChange={(e) => setBirthMonth(Number(e.target.value))}
+            required
+          />
+        </label>
+        {errors.birth_month && <p>{errors.birth_month}</p>}
+        <label>
+          Birth year
+          <input
+            type="number"
+            value={birth_year}
+            onChange={(e) => setBirthYear(Number(e.target.value))}
+            required
+          />
+        </label>
+        {errors.birth_year && <p>{errors.birth_year}</p>}
         <label>
           Password
           <input

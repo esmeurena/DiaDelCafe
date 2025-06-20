@@ -34,9 +34,15 @@ function LoginFormModal():JSX.Element {
     }
   };
 
+  const setLogin = () => {
+    setEmail("email2@email.com");
+    setPassword("password");
+  };
+
   return (
     <>
       <h1>Log In</h1>
+      <button onClick={setLogin}>auto log in</button>
       <form onSubmit={(e) => handleSubmit(e)}>
         <label>
           Email
