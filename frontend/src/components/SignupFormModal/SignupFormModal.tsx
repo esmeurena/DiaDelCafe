@@ -83,12 +83,12 @@ function SignupFormModal() {
   };
 
   return (
-    <>
+    <div className="sign-up-container-modal">
       <h1>Sign Up</h1>
       <button onClick={setSignUp}>pre-fill sign up</button>
       {errors.server && <p>{errors.server}</p>}
-      <form onSubmit={handleSubmit}>
-        <label>
+      <form className="sign-up-form-modal" onSubmit={handleSubmit}>
+        <label className="sign-up-label-modal">
           First Name
           <input
             type="text"
@@ -97,8 +97,8 @@ function SignupFormModal() {
             required
           />
         </label>
-        {errors.first_name && <p>{errors.first_name}</p>}
-        <label>
+        {errors.first_name && <p className="red-error-message">{errors.first_name}</p>}
+        <label className="sign-up-label-modal">
           Last Name
           <input
             type="text"
@@ -107,8 +107,8 @@ function SignupFormModal() {
             required
           />
         </label>
-        {errors.last_name && <p>{errors.last_name}</p>}
-        <label>
+        {errors.last_name && <p className="red-error-message">{errors.last_name}</p>}
+        <label className="sign-up-label-modal">
           Email
           <input
             type="text"
@@ -117,8 +117,8 @@ function SignupFormModal() {
             required
           />
         </label>
-        {errors.email && <p>{errors.email}</p>}
-        <label>
+        {errors.email && <p className="red-error-message">{errors.email}</p>}
+        <label className="sign-up-label-modal">
           Birth day
           <input
             type="number"
@@ -127,8 +127,8 @@ function SignupFormModal() {
             required
           />
         </label>
-        {errors.birth_day && <p>{errors.birth_day}</p>}
-        <label>
+        {errors.birth_day && <p className="red-error-message">{errors.birth_day}</p>}
+        <label className="sign-up-label-modal">
           Birth month
           <input
             type="number"
@@ -137,8 +137,8 @@ function SignupFormModal() {
             required
           />
         </label>
-        {errors.birth_month && <p>{errors.birth_month}</p>}
-        <label>
+        {errors.birth_month && <p className="red-error-message">{errors.birth_month}</p>}
+        <label className="sign-up-label-modal">
           Birth year
           <input
             type="number"
@@ -147,8 +147,8 @@ function SignupFormModal() {
             required
           />
         </label>
-        {errors.birth_year && <p>{errors.birth_year}</p>}
-        <label>
+        {errors.birth_year && <p className="red-error-message">{errors.birth_year}</p>}
+        <label className="sign-up-label-modal">
           Password
           <input
             type="password"
@@ -157,8 +157,8 @@ function SignupFormModal() {
             required
           />
         </label>
-        {errors.password && <p>{errors.password}</p>}
-        <label>
+        {errors.password && <p className="red-error-message">{errors.password}</p>}
+        <label className="sign-up-label-modal">
           Confirm Password
           <input
             type="password"
@@ -167,10 +167,10 @@ function SignupFormModal() {
             required
           />
         </label>
-        {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
-        <button type="submit">Sign Up</button>
+        {errors.confirmPassword && <p className="red-error-message">{errors.confirmPassword}</p>}
+        <button className="sign-up-button-modal" type="submit">Sign Up</button>
       </form>
-    </>
+    </div>
   );
 }
 
