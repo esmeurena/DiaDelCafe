@@ -63,11 +63,11 @@ function UpdateMenuItemPage() {
     };
 
     return (
-        <>
+        <div className="update-menu-container">
             <h1>Update Menu item</h1>
             {errors.server && <p>{errors.server}</p>}
-            <form onSubmit={(e) => handleSubmit(e)}>
-                <label>
+            <form className="update-menu-form" onSubmit={(e) => handleSubmit(e)}>
+                <label className="update-menu-label">
                     Name
                     <input
                         type="text"
@@ -76,8 +76,8 @@ function UpdateMenuItemPage() {
                         required
                     />
                 </label>
-                {errors.name && <p>{errors.name}</p>}
-                <label>
+                {errors.name && <p className="red-error-message">{errors.name[0]}</p>}
+                <label className="update-menu-label">
                     Description
                     <input
                         type="text"
@@ -86,8 +86,8 @@ function UpdateMenuItemPage() {
                         required
                     />
                 </label>
-                {errors.description && <p>{errors.description}</p>}
-                <label>
+                {errors.description && <p className="red-error-message">{errors.description[0]}</p>}
+                <label className="update-menu-label">
                     Price
                     <input
                         type="number"
@@ -96,8 +96,8 @@ function UpdateMenuItemPage() {
                         required
                     />
                 </label>
-                {errors.price && <p>{errors.price}</p>}
-                <label>
+                {errors.price && <p className="red-error-message">{errors.price[0]}</p>}
+                <label className="update-menu-label">
                     Image url
                     <input
                         type="text"
@@ -106,11 +106,11 @@ function UpdateMenuItemPage() {
                         required
                     />
                 </label>
-                {errors.url && <p>{errors.url}</p>}
+                {errors.url && <p className="red-error-message">{errors.url[0]}</p>}
 
-                <button type="submit">Update Item</button>
+                <button className="update-menu-button" type="submit">Update Item</button>
             </form>
-        </>
+        </div>
     );
 }
 

@@ -1,30 +1,133 @@
+.menu-container-outer {
+    padding: 2rem;
+    color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 1800px;
+}
+
+
 .menu-container {
     padding: 2rem;
-    max-width: 1000px;
-    margin: auto;
+    background-color: #121212;
+    color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+    max-width: 1800px;
+    margin: 0 auto;
 }
 
 .menu-item {
-    border: 1px solid lightgray;
-    border-radius: 20px;
-    padding: 1rem;
+    background-color: #1e1e1e;
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    height: 22rem;
+    width: 20rem;
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+}
+
+.menu-item-header {
     margin-bottom: 1rem;
 }
 
-.menu-second {
-    display: flex;
-    gap: 1rem;
-    justify-content: space-between;
+.menu-item-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #ffffff;
 }
 
-/* .menu-item-image {
-    width: 300px;
-    height: auto;
-    border-radius: 10px;
-} */
-.menu-item-name-top{
-    flex: 1;
+.menu-item-body {
     display: flex;
-    flex-direction: column;
-    gap: .5rem;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+}
+
+.menu-item-description {
+    flex: 1;
+    font-size: 1rem;
+    color: #ccc;
+}
+
+.menu-item-image-sec {
+    flex-shrink: 0;
+}
+
+.menu-item-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 8px;
+    object-fit: cover;
+    background-color: #fff;
+}
+
+.menu-item-footer {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu-item-price {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #f5c842;
+}
+
+.menu-item-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.update-button,
+.delete-button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: background 0.2s ease;
+}
+
+.update-button {
+    background-color: #2a9d8f;
+    color: white;
+}
+
+.update-button:hover {
+    background-color: #21867a;
+}
+
+.delete-button {
+    background-color: #e63946;
+    color: white;
+}
+
+.delete-button:hover {
+    background-color: #c5313c;
+}
+
+.menu-item-create {
+    position: relative;
+    font-size: 1rem;
+    color: #e0e0e0;
+    padding-top: 2rem;
+    text-decoration: none;
+    letter-spacing: 1px;
+    padding-bottom: 1rem;
+}
+
+.menu-item-create:hover {
+    color: #ffac38f0;
 }

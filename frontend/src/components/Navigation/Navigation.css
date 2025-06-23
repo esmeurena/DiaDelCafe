@@ -4,13 +4,15 @@
 
 .navbar {
   display: flex;
+  padding: 50px 5%;
+  gap: 30px;
   justify-content: space-between;
   align-items: stretch;
   /* padding: 0 2rem; */
-  padding-right: 2rem;
-  padding-top: 1rem;
-  height: 180px;
-  background-color: lightgray;
+  /* padding-right: 2rem;
+  padding-top: 1rem; */
+  height: 80px;
+  background-color: #121212;
   position: relative;
   z-index: 10;
 }
@@ -18,11 +20,12 @@
 .navbar-left {
   display: flex;
   align-items: center;
+  padding-left: 4rem;
 }
 
 .logo {
   color: #5c3a21;
-  height: 220px;
+  height: 180px;
   vertical-align: text-top;
   /* max-height: 100%; */
   z-index: 2;
@@ -33,6 +36,7 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-end;
+  padding-right: 4rem;
 }
 
 .navbar-top {
@@ -42,14 +46,51 @@
 }
 
 .nav-text {
-  font-size: 2rem;
-  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  position: relative;
+  font-size: 1rem;
+  color: #e0e0e0;
+  text-decoration: none;
+  letter-spacing: 1px;
+  padding-bottom: 0.5rem;
+  transition: color 0.3s ease;
+}
+
+.dashboard-button, .log-out-button {
+    position: relative;
+    font-size: 1rem;
+    color: #e0e0e0;
+    padding: 0.5rem;
+    background-color: #1e1e1e;
+    text-decoration: none;
+    letter-spacing: 1px;
+    padding-bottom: 1rem;
+}
+
+.dashboard-button:hover {
+    color: #ffac38f0;
+}
+
+.log-out-button:hover {
+    color: #ffac38f0;
+}
+
+.nav-text.active {
+  color: #ffac38f0;
+}
+
+.nav-text.active::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 100%;
+  background-color: #ffac38f0;
 }
 
 .profile-icon {
   background: none;
   border: none;
-  padding-right: 3rem;
   font-size: 1.5rem;
   cursor: pointer;
 }
@@ -65,7 +106,7 @@
   right: -360px;
   width: 300px;
   height: 800px;
-  background-color: white;
+  background-color: #1e1e1e;
   box-shadow: 6px rgba(0, 0, 0, 0.1);
   padding: 2rem;
   transition: right 0.1s ease-in-out;

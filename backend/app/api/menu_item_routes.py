@@ -3,6 +3,7 @@ from flask_login import login_required
 from app.models import MenuItem
 from flask import request
 from app import db
+from app.forms import MenuItemForm
 from flask_login import current_user
 
 menu_item_routes = Blueprint('menu_items', __name__)
@@ -11,19 +12,23 @@ menu_item_routes = Blueprint('menu_items', __name__)
 @menu_item_routes.route('/create', methods=['POST'])
 @login_required
 def create_menu_item():
-    data = request.get_json()
 
-    menu_item = MenuItem(
-        name=data['name'],
-        description=data['description'],
-        price=data['price'],
-        url=data['url']
-    )
+    form = MenuItemForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+    # data = request.get_json()
+    if form.validate_on_submit():
+        menu_item = MenuItem(
+            name=form.data['name'],
+            description=form.data['description'],
+            price=form.data['price'],
+            url=form.data['url']
+        )
 
-    db.session.add(menu_item)
-    db.session.commit()
+        db.session.add(menu_item)
+        db.session.commit()
 
-    return menu_item.to_dict(), 201
+        return menu_item.to_dict(), 201
+    return form.errors, 401
 
 
 # GET - get all menu items
@@ -49,20 +54,34 @@ def get_menu_item(menu_item_id):
 @login_required
 def update_menu_item(id):
 
+    form = MenuItemForm()
+
     new_menu_item = MenuItem.query.get(id)
-    old_menu_item = request.get_json()
-    if 'name' in old_menu_item:
-        new_menu_item.name = old_menu_item['name']
-    if 'description' in old_menu_item:
-        new_menu_item.description = old_menu_item['description']
-    if 'price' in old_menu_item:
-        new_menu_item.price = old_menu_item['price']
-    if 'url' in old_menu_item:
-        new_menu_item.url = old_menu_item['url']
+    form["csrf_token"].data = request.cookies["csrf_token"]
 
-    db.session.commit()
+    if form.validate_on_submit():
+        new_menu_item.name=form.data['name']
+        new_menu_item.description=form.data['description'],
+        new_menu_item.price=form.data['price'],
+        new_menu_item.url=form.data['url']
 
-    return {'menu_item': new_menu_item.to_dict()}
+        db.session.commit()
+        return new_menu_item.to_dict(), 200
+    return form.errors, 400
+
+    # old_menu_item = request.get_json()
+    # if 'name' in old_menu_item:
+    #     new_menu_item.name = old_menu_item['name']
+    # if 'description' in old_menu_item:
+    #     new_menu_item.description = old_menu_item['description']
+    # if 'price' in old_menu_item:
+    #     new_menu_item.price = old_menu_item['price']
+    # if 'url' in old_menu_item:
+    #     new_menu_item.url = old_menu_item['url']
+
+    # db.session.commit()
+
+    # return {'menu_item': new_menu_item.to_dict()}
 
 
 # DELETE - delete a menu item

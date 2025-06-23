@@ -1,7 +1,7 @@
 .announcement-sec {
   position: relative;
   width: 100%;
-  height: 500px;
+  height: 400px;
   align-items: center;
   background-color: gray;
 }
@@ -29,13 +29,13 @@ width: 100%;
   display: flex;
   padding: 50px 5%;
   gap: 30px;
-  background-color: lightgray;
+  background-color: #121212;
 }
 
 .our-story-sec {
   flex: 2;
   padding: 20px;
-  background-color: #f9f4ef;
+  background-color: #1e1e1e;
   border-radius: 10px;
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
 }
@@ -43,13 +43,13 @@ width: 100%;
 .social-media-sec {
   flex: 1.2;
   padding: 20px;
-  background-color: #f9f4ef;
+  background-color: #1e1e1e;
   border-radius: 10px;
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
 }
 
 .social-tile {
-  background: #fff;
+  background-color: #383838;
   border: 1px solid #e1e1e1;
   border-radius: 10px;
   padding: 1rem;

@@ -56,7 +56,6 @@ def sign_up():
             first_name=form.data["first_name"],
             last_name=form.data["last_name"],
             email=form.data["email"],
-            phone_number=form.data["phone_number"],
             birth_day=form.data["birth_day"],
             birth_month=form.data["birth_month"],
             birth_year=form.data["birth_year"],

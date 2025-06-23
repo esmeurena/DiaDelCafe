@@ -10,7 +10,6 @@ interface IUpdateUserErrors {
     first_name?: string;
     last_name?: string;
     email?: string;
-    phone_number?: string;
     birth_day?: string;
     birth_month?: string;
     birth_year?: string;
@@ -23,7 +22,6 @@ function UpdateUserDashboard() {
     const [first_name, setFirstName] = useState("");
     const [last_name, setLastName] = useState("");
     const [email, setEmail] = useState("");
-    const [phone_number, setPhoneNumber] = useState(0);
     const [birth_day, setBirthDay] = useState(0);
     const [birth_month, setBirthMonth] = useState(0);
     const [birth_year, setBirthYear] = useState(0);
@@ -32,7 +30,6 @@ function UpdateUserDashboard() {
         first_name: "",
         last_name: "",
         email: "",
-        phone_number: "",
         birth_day: "",
         birth_month: "",
         birth_year: ""
@@ -43,7 +40,6 @@ function UpdateUserDashboard() {
             setFirstName(sessionUser.first_name);
             setLastName(sessionUser.last_name);
             setEmail(sessionUser.email);
-            setPhoneNumber(sessionUser.phone_number);
             setBirthDay(sessionUser.birth_day);
             setBirthMonth(sessionUser.birth_month);
             setBirthYear(sessionUser.birth_year);
@@ -59,7 +55,6 @@ function UpdateUserDashboard() {
                 first_name,
                 last_name,
                 email,
-                phone_number,
                 birth_day,
                 birth_month,
                 birth_year
@@ -74,11 +69,11 @@ function UpdateUserDashboard() {
     };
 
     return (
-        <>
-            <h1>Update Menu item</h1>
+        <div className="update-user-container">
+            <h1>Update User Profile</h1>
             {errors.server && <p>{errors.server}</p>}
-            <form onSubmit={(e) => handleSubmit(e)}>
-                <label>
+            <form className="update-user-form" onSubmit={(e) => handleSubmit(e)}>
+                <label className="update-user-label">
                     First Name
                     <input
                         type="text"
@@ -87,8 +82,8 @@ function UpdateUserDashboard() {
                         required
                     />
                 </label>
-                {errors.first_name && <p>{errors.first_name}</p>}
-                <label>
+                {errors.first_name && <p className="red-error-message">{errors.first_name[0]}</p>}
+                <label className="update-user-label">
                     Last Name
                     <input
                         type="text"
@@ -97,8 +92,8 @@ function UpdateUserDashboard() {
                         required
                     />
                 </label>
-                {errors.last_name && <p>{errors.last_name}</p>}
-                <label>
+                {errors.last_name && <p className="red-error-message">{errors.last_name[0]}</p>}
+                <label className="update-user-label">
                     Email
                     <input
                         type="text"
@@ -107,18 +102,8 @@ function UpdateUserDashboard() {
                         required
                     />
                 </label>
-                {errors.email && <p>{errors.email}</p>}
-                <label>
-                    Phone Number
-                    <input
-                        type="number"
-                        value={phone_number}
-                        onChange={(e) => setPhoneNumber(Number(e.target.value))}
-                        required
-                    />
-                </label>
-                {errors.phone_number && <p>{errors.phone_number}</p>}
-                <label>
+                {errors.email && <p className="red-error-message">{errors.email[0]}</p>}
+                <label className="update-user-label">
                     Birth day
                     <input
                         type="number"
@@ -127,8 +112,8 @@ function UpdateUserDashboard() {
                         required
                     />
                 </label>
-                {errors.birth_day && <p>{errors.birth_day}</p>}
-                <label>
+                {errors.birth_day && <p className="red-error-message">{errors.birth_day[0]}</p>}
+                <label className="update-user-label">
                     Birth month
                     <input
                         type="number"
@@ -137,8 +122,8 @@ function UpdateUserDashboard() {
                         required
                     />
                 </label>
-                {errors.birth_month && <p>{errors.birth_month}</p>}
-                <label>
+                {errors.birth_month && <p className="red-error-message">{errors.birth_month[0]}</p>}
+                <label className="update-user-label">
                     Birth year
                     <input
                         type="number"
@@ -147,11 +132,11 @@ function UpdateUserDashboard() {
                         required
                     />
                 </label>
-                {errors.birth_year && <p>{errors.birth_year}</p>}
+                {errors.birth_year && <p className="red-error-message">{errors.birth_year[0]}</p>}
 
-                <button type="submit">Update Item</button>
+                <button className="update-user-button" type="submit">Update Item</button>
             </form>
-        </>
+        </div>
     );
 }
 

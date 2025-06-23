@@ -13,7 +13,6 @@ interface ISignUpErrors {
   email?: string;
   password?: string;
   confirmPassword?: string;
-  phone_number?: string;
   birth_day?: string;
   birth_month?: string;
   birth_year?: string;
@@ -27,7 +26,6 @@ function SignupFormModal() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [phone_number, setPhoneNumber] = useState(0);
   const [birth_day, setBirthDay] = useState(0);
   const [birth_month, setBirthMonth] = useState(0);
   const [birth_year, setBirthYear] = useState(0);
@@ -38,7 +36,6 @@ function SignupFormModal() {
     email: "",
     password: "",
     confirmPassword: "",
-    phone_number: "",
     birth_day: "",
     birth_month: "",
     birth_year: ""
@@ -61,7 +58,6 @@ function SignupFormModal() {
         last_name,
         email,
         password,
-        phone_number,
         birth_day,
         birth_month,
         birth_year
@@ -81,7 +77,6 @@ function SignupFormModal() {
     setEmail("email11@email.com");
     setPassword("password");
     setConfirmPassword("password");
-    setPhoneNumber(1234567899);
     setBirthDay(1);
     setBirthMonth(2);
     setBirthYear(1988)
@@ -123,16 +118,6 @@ function SignupFormModal() {
           />
         </label>
         {errors.email && <p>{errors.email}</p>}
-        <label>
-          Phone Number
-          <input
-            type="number"
-            value={phone_number}
-            onChange={(e) => setPhoneNumber(Number(e.target.value))}
-            required
-          />
-        </label>
-        {errors.phone_number && <p>{errors.phone_number}</p>}
         <label>
           Birth day
           <input

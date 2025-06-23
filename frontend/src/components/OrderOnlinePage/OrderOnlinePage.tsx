@@ -2,15 +2,13 @@ import { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState, useAppSelector } from "../../redux/store";
-import { createMenuItemThunk, deleteMenuItemThunk, getAllMenuItemsThunk, updateMenuItemThunk } from "../../redux/menu_item";
-// import { useNavigate } from "react-router-dom";
+import { deleteMenuItemThunk, getAllMenuItemsThunk } from "../../redux/menu_item";
 import './OrderOnlinePage.css';
 import { useNavigate } from "react-router-dom";
 
 function OrderOnlinePage() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    // const navigate = useNavigate();
     const sessionUser = useAppSelector((state) => state.session.user);
     const menuItems = useSelector((state: RootState) => state.menu_items.allMenuItems);
     useEffect(() => {
@@ -24,89 +22,65 @@ function OrderOnlinePage() {
         navigate("/order")
     };
 
-    // const updateMenuItem = async (e: React.MouseEvent<HTMLButtonElement>, menuItemId: number) => {
-    //     e.preventDefault();
-    //     await dispatch(updateMenuItemThunk(menuItemId));
-
-    //     navigate("/order")
-    // };
-
     return (
-        <div className="menu-container">
-            <h1>Order Online</h1>
-            <div className="menu-item-create">
-                <NavLink to="/createMenuItem">Create new menu item</NavLink>
-            </div>
+        <div className="menu-container-outer">
+            <div className="title-create">
+                    <h1 className="order-online-title">Order Online</h1>
 
-            {
-                (() => {
-                    if (!sessionUser) {
-                        return <h2>Log in to order online!</h2>;
+                    {
+                        (() => {
+                            if (sessionUser) {
+                                return <div className="menu-item-create">
+                                    <NavLink className="menu-item-create" to="/createMenuItem">CREATE NEW MENU ITEM</NavLink>
+                                </div>
+                            }
+                        })()
                     }
-                    else if (menuItems.length === 0) {
-                        return <p>No Menu items</p>;
-                    } else {
-                        const menuItemsDisplay = [];
-                        let total = 0;
+                </div>
+            <div className="menu-container">
+                {
+                    (() => {
+                        if (!sessionUser) {
+                            return <h2>Log in to order online!</h2>;
+                        }
+                        else if (menuItems.length === 0) {
+                            return <p>No Menu items</p>;
+                        } else {
+                            const menuItemsDisplay = [];
+                            let total = 0;
 
-                        for (let i = 0; i < menuItems.length; i++) {
-                            const indiv_item = menuItems[i];
-
-                            // let price = Number(indiv_item.product?.price) || 0;
-                            // let itemTotal = Number(price * indiv_item.item_count);
-                            // total += itemTotal;
-
-                            menuItemsDisplay.push(
-
-                                <div className="menu-item" key={indiv_item.id} >
-
-                                    <div className="menu-second">
-                                        {/* <img className="menu-item-image" src={indiv_item.menu_item[0]?.url} /> */}
-
-                                        <div className="menu-item-name-top">
-                                            <h3 className="menu-item-name">{indiv_item.name} </h3>
-                                            {/* <p>★{indiv_item.product?.avg_rating}</p> */}
-                                            {/* <p>Free shipping when you spend $7.55 more</p>
-                                            <label> Size:
-                                                <select className="shopping-size-select"> <option>S</option> <option>M</option> <option>L</option> </select>
-                                            </label> */}
+                            for (let i = 0; i < menuItems.length; i++) {
+                                const indiv_item = menuItems[i];
+                                menuItemsDisplay.push(
+                                    <div className="menu-item" key={indiv_item.id}>
+                                        <div className="menu-item-header">
+                                            <h2 className="menu-item-title">{indiv_item.name}</h2>
                                         </div>
 
-                                        {/* <div className="fix-price">
-                                                <div>${price.toFixed(2)}</div>
-                                        </div> */}
-                                    </div>
-                                    <div className="menu-item-update">
-                                        <NavLink to={`/menu_items/${Number(indiv_item.id)}/update`}
-                                            className='update-menu-item-button'>
-                                            Update Item
-                                        </NavLink>
-                                        {/* <button onClick={(e) => updateMenuItem(e, Number(indiv_item.id))} className="update-menu-item-button">
-                                            Update Menu Item
-                                        </button> */}
-                                    </div>
-                                    <div className="menu-item-delete">
+                                        <div className="menu-item-body">
+                                            <div className="menu-item-description">
+                                                <p>{indiv_item.description}</p>
+                                            </div>
+                                            <div className="menu-item-image-sec">
+                                                <img className="menu-item-image" src={indiv_item.url} alt={indiv_item.name} />
+                                            </div>
+                                        </div>
 
-                                        <button onClick={(e) => deleteMenuItem(e, Number(indiv_item.id))} className="delete-menu-item-button">
-                                            Delete Item
-                                        </button>
+                                        <div className="menu-item-footer">
+                                            <p className="menu-item-price">${indiv_item.price}</p>
+                                            <div className="menu-item-actions">
+                                                <NavLink to={`/menu_items/${indiv_item.id}/update`} className="update-button">Update</NavLink>
+                                                <button onClick={(e) => deleteMenuItem(e, indiv_item.id!)} className="delete-button">Delete</button>
+                                            </div>
+                                        </div>
                                     </div>
-
-                                    <hr className="spacing-line" />
-                                    <p className="order-tax-message">Taxes and other fees: $1.04 (Ready within 20-30 mins)</p>
-                                </div>
-                            );
+                                );
+                            }
+                            return menuItemsDisplay;
                         }
-                        // menuItemsDisplay.push(
-                        //     <div className="order-total" key="total-price">
-                        //         Total Price: ${total.toFixed(2)}
-                        //     </div>
-                        // );
-
-                        return menuItemsDisplay;
-                    }
-                })()
-            }
+                    })()
+                }
+            </div>
         </div>
     );
 

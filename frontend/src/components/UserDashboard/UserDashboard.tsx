@@ -32,27 +32,26 @@ function UserDashboard(): JSX.Element {
           className="user-dashboard-profile-image"
           src="/diadelcafe_insta/insta1.png"
         />
-        <h1>
+        <h1 className="user-dash-title">
           {sessionUser.first_name} {sessionUser.last_name}
         </h1>
-        <p>{sessionUser.email}</p>
+        <p className= "user-dash-text">{sessionUser.email}</p>
       </div>
 
       <div className="user-dashboard-panel">
-        <h2>Contact Info</h2>
-        <p><strong>Phone:</strong> {sessionUser.phone_number}</p>
-        <p><strong>Email:</strong> {sessionUser.email}</p>
+        <h2 className="user-dash-title">Contact Info</h2>
+        <p className= "user-dash-text">Email: {sessionUser.email}</p>
       </div>
 
       <div className="user-dashboard-panel">
-        <h2>Birthday</h2>
-        <p>
+        <h2 className="user-dash-title">Birthday</h2>
+        <p className= "user-dash-text">
           {sessionUser.birth_month}/{sessionUser.birth_day}/{sessionUser.birth_year}
         </p>
       </div>
 
       <div className="user-dashboard-panel">
-        <NavLink to={`/users/${Number(sessionUser.id)}/update`} > Update profile </NavLink>
+        <NavLink className="user-dashboard-update-button" to={`/users/${Number(sessionUser.id)}/update`} > Update profile </NavLink>
         <button onClick={deleteUser}>Delete account</button>
       </div>
     </div>

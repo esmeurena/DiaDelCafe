@@ -37,7 +37,7 @@ function ProfileButton(): JSX.Element {
   return (
     <>
       <button className="profile-icon" onClick={() => setShowPanel(true)}>
-        <FaUserCircle />
+        <img src="/profile.png" alt="Profile" className="profile-image-icon" />
       </button>
 
       <div id="profile-panel" className={`profile-panel ${showPanel ? "open" : ""}`}>
@@ -46,8 +46,8 @@ function ProfileButton(): JSX.Element {
           <>
             {/* <p><strong>{user.username}</strong></p> */}
             <h3>Hello, {user.first_name}!</h3>
-            <NavLink to="/dashboard">User Dashboard</NavLink>
-            <button onClick={logout}>Log Out</button>
+            <NavLink className= "dashboard-button" to="/dashboard">User Dashboard</NavLink>
+            <button className="log-out-button" onClick={logout}>Log Out</button>
           </>
         ) : (
           <>
