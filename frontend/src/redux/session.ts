@@ -132,7 +132,6 @@ export const updateUserThunk = (userId: number, newUser: IUser): any => async (d
     formData.append("first_name", newUser.first_name);
     formData.append("last_name", newUser.last_name);
     formData.append("email", newUser.email);
-    formData.append("phone_number", newUser.phone_number.toString());
     formData.append("birth_day", newUser.birth_day.toString());
     formData.append("birth_month", newUser.birth_month.toString());
     formData.append("birth_year", newUser.birth_year.toString());

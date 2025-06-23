@@ -43,13 +43,12 @@ def update_user(id):
     form["csrf_token"].data = request.cookies["csrf_token"]
 
     if form.validate_on_submit():
-        user.first_name=form.data["first_name"],
-        user.last_name=form.data["last_name"],
-        user.email=form.data["email"],
-        user.phone_number=form.data["phone_number"],
-        user.birth_day=form.data["birth_day"],
-        user.birth_month=form.data["birth_month"],
-        user.birth_year=form.data["birth_year"],
+        user.first_name=form.data["first_name"]
+        user.last_name=form.data["last_name"]
+        user.email=form.data["email"]
+        user.birth_day=form.data["birth_day"]
+        user.birth_month=form.data["birth_month"]
+        user.birth_year=form.data["birth_year"]
 
         db.session.commit()
         return user.to_dict(), 200

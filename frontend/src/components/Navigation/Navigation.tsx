@@ -10,8 +10,8 @@ function Navigation():JSX.Element {
       </div>
 
       <div className="navbar-top">
-        <NavLink className = "nav-text" to="/">Home</NavLink>
-        <NavLink className = "nav-text" to="/order">Order Online</NavLink>
+        <NavLink className = "nav-text" to="/">HOME</NavLink>
+        <NavLink className = "nav-text" to="/order">ORDER ONLINE</NavLink>
       </div>
 
       <div className="navbar-right">

@@ -1,6 +1,6 @@
 .user-dashboard-container {
   padding: 60px 5%;
-  background-color: #fffaf5;
+  background-color: #121212;
   color: black;
   display: flex;
   flex-direction: column;
@@ -27,7 +27,29 @@
 .user-dashboard-panel {
   width: 100%;
   max-width: 600px;
-  background-color: white;
+  background-color: #1e1e1e;
   padding: 1rem;
   border-radius: 10px;
+}
+
+.user-dash-title {
+  color: white;
+}
+
+.user-dash-text {
+  color: white;
+}
+
+.user-dashboard-update-button {
+    position: relative;
+    font-size: 1rem;
+    color: #e0e0e0;
+    padding-top: 2rem;
+    text-decoration: none;
+    letter-spacing: 1px;
+    padding-bottom: 1rem;
+}
+
+.user-dashboard-update-button:hover {
+    color: #ffac38f0;
 }

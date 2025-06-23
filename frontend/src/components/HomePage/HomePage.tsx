@@ -21,9 +21,9 @@ function HomePage() {
     return (
         <div className="main-page">
             <div className="announcement-sec">
-                <div className="announcement-text">
+                {/* <div className="announcement-text">
                     <h1>Coming Soon...</h1>
-                </div>
+                </div> */}
                 <div className="banner-carousel">
                     <img
                         src={imageUrls[currentImageIndex]}

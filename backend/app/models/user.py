@@ -15,7 +15,6 @@ class User(db.Model, UserMixin):
     last_name = db.Column(db.String(30), nullable=False)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
-    phone_number = db.Column(db.Integer, nullable=False)
     birth_day = db.Column(db.Integer, nullable=False)
     birth_month = db.Column(db.Integer, nullable=False)
     birth_year = db.Column(db.Integer, nullable=False)
@@ -34,4 +33,4 @@ class User(db.Model, UserMixin):
         return check_password_hash(self.password, password)
 
     def to_dict(self):
-        return {"id": self.id, "first_name": self.first_name, "last_name": self.last_name, "email": self.email, "phone_number": self.phone_number, "birth_day": self.birth_day, "birth_month": self.birth_month, "birth_year": self.birth_year}
+        return {"id": self.id, "first_name": self.first_name, "last_name": self.last_name, "email": self.email, "birth_day": self.birth_day, "birth_month": self.birth_month, "birth_year": self.birth_year}

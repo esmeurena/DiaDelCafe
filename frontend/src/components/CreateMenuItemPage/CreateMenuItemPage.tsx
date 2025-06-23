@@ -49,55 +49,59 @@ function CreateMenuItemPage() {
   };
 
   return (
-    <>
-      <h1>Create new Menu Item</h1>
-      {errors.server && <p>{errors.server}</p>}
-      <form onSubmit={(e) => handleSubmit(e)}>
-        <label>
-          Name
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-          />
-        </label>
-        {errors.name && <p>{errors.name}</p>}
-        <label>
-          Description
-          <input
-            type="text"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            required
-          />
-        </label>
-        {errors.description && <p>{errors.description}</p>}
-        <label>
-          Price
-          <input
-            type="number"
-            value={price}
-            onChange={(e) => setPrice(Number(e.target.value))}
-            required
-          />
-        </label>
-        {errors.price && <p>{errors.price}</p>}
-        <label>
-          Image url
-          <input
-            type="text"
-            value={url}
-            onChange={(e) => setUrl(e.target.value)}
-            required
-          />
-        </label>
-        {errors.url && <p>{errors.url}</p>}
-        
-        <button type="submit">Create Item</button>
-      </form>
-    </>
-  );
+  <div className="create-menu-container">
+    <h1>Create New Menu Item</h1>
+    {errors.server && <p className="red-error-message">{errors.server}</p>}
+    <form className="create-menu-form" onSubmit={(e) => handleSubmit(e)}>
+      <label className= "create-menu-label">
+        Name
+        <input
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
+        />
+      </label>
+      {errors.name && <p className="red-error-message">{errors.name[0]}</p>}
+
+      <label className= "create-menu-label">
+        Description
+        <input
+          type="text"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          required
+        />
+      </label>
+      {errors.description && <p className="red-error-message">{errors.description[0]}</p>}
+
+      <label className= "create-menu-label">
+        Price
+        <input
+          type="number"
+          value={price}
+          onChange={(e) => setPrice(Number(e.target.value))}
+          required
+        />
+      </label>
+      {errors.price && <p className="red-error-message">{errors.price[0]}</p>}
+
+      <label className= "create-menu-label">
+        Image URL
+        <input
+          type="text"
+          value={url}
+          onChange={(e) => setUrl(e.target.value)}
+          required
+        />
+      </label>
+      {errors.url && <p className="red-error-message">{errors.url[0]}</p>}
+
+      <button className= "create-menu-button" type="submit">CREATE MENU ITEM</button>
+    </form>
+  </div>
+);
+
 }
 
 export default CreateMenuItemPage;
